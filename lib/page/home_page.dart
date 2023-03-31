@@ -34,7 +34,9 @@ class _HomePageState extends State<HomePage> {
               return Center(child: CircularProgressIndicator());
             default:
               if (snapshot.hasError) {
+                print(snapshot.error);
                 return buildText('Something Went Wrong Try later');
+
               } else {
                 final todos = snapshot.data;
 

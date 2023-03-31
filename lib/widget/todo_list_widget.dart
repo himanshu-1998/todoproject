@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:todoproject/widget/todo_widget.dart';
 
@@ -30,23 +31,45 @@ class _TodoListWidgetState extends State<TodoListWidget> {
             itemBuilder: (context, index) {
               final todo = todos[index];
 
-              return Dismissible(
-                  key: Key(provider.todos[index].toString()),
-                  onDismissed: (direction) {
-                    setState(() {
-                      provider.removeTodo(todo);
-                    });
-                  },
-                  background: Container(
-                    color: Colors.red,
-                    child: Center(
-                      child: Icon(
-                        Icons.delete,
-                        color: Colors.white,
-                      ),
+              return Slidable(
+                  key: ValueKey(index),
+                  startActionPane: ActionPane(
+                    dismissible: DismissiblePane(
+                      onDismissed: () {
+                        setState(() {
+                          provider.removeTodo(todo);
+                        });
+                      },
                     ),
-                    alignment: Alignment.centerRight,
-                    padding: EdgeInsets.only(right: 20),
+                    motion: BehindMotion(),
+                    children: [
+                      SlidableAction(
+                          backgroundColor: Colors.red,
+                          icon: Icons.delete,
+                          onPressed: (context) {
+                            setState(() {});
+                          })
+                    ],
+                  ),
+                  endActionPane: ActionPane(
+                    dismissible: DismissiblePane(
+                      onDismissed: () {
+                        setState(() {
+                          provider.removeTodo(todo);
+                        });
+                      },
+                    ),
+                    motion: BehindMotion(),
+                    children: [
+                      SlidableAction(
+                          backgroundColor: Colors.red,
+                          icon: Icons.delete,
+                          onPressed: (context) {
+                            setState(() {
+                              provider.removeTodo(todo);
+                            });
+                          })
+                    ],
                   ),
                   child: TodoWidget(todo: todo));
             },

@@ -23,6 +23,7 @@ class TodosProvider extends ChangeNotifier {
   void removeTodo(Todo todo) => FirebaseApi.deleteTodo(todo);
 
 
+  String? imageUrl ;
 
   bool toggleTodoStatus(Todo todo) {
     todo.isDone = !todo.isDone;

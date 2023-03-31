@@ -1,4 +1,4 @@
-import 'dart:html';
+
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,6 @@ import 'package:todoproject/widget/todo_form_widget.dart';
 import '../model/todo.dart';
 import '../provider/todos.dart';
 
-
 class AddTodoDialogWidget extends StatefulWidget {
   @override
   _AddTodoDialogWidgetState createState() => _AddTodoDialogWidgetState();
@@ -20,9 +19,10 @@ class _AddTodoDialogWidgetState extends State<AddTodoDialogWidget> {
   final _formKey = GlobalKey<FormState>();
   String title = '';
   String description = '';
-  File? imageFile;
-  final picker = ImagePicker();
+
+
   bool isLoading = false;
+
   @override
   Widget build(BuildContext context) => AlertDialog(
         content: Form(
@@ -44,7 +44,6 @@ class _AddTodoDialogWidgetState extends State<AddTodoDialogWidget> {
                 onChangedDescription: (description) =>
                     setState(() => this.description = description),
                 onSavedTodo: addTodo,
-                onSavedPhoto: UploadImageScreen(),
               ),
             ],
           ),
@@ -57,18 +56,18 @@ class _AddTodoDialogWidgetState extends State<AddTodoDialogWidget> {
     if (!isValid!) {
       return;
     } else {
+      final provider = Provider.of<TodosProvider>(context, listen: false);
+
       final todo = Todo(
         id: DateTime.now().toString(),
         title: title,
         description: description,
         createdTime: DateTime.now(),
-      );
 
-      final provider = Provider.of<TodosProvider>(context, listen: false);
+      );
       provider.addTodo(todo);
 
       Navigator.of(context).pop();
     }
   }
-
 }

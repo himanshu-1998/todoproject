@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 
 import '../utils.dart';
 
@@ -14,9 +13,11 @@ class Todo {
   String description;
   bool isDone;
 
+
   Todo({
     required this.createdTime,
     required this.title,
+
     this.description = '',
     this.id,
     this.isDone = false,
@@ -28,6 +29,7 @@ class Todo {
         description: json['description'],
         id: json['id'],
         isDone: json['isDone'],
+
       );
 
   Map<String, dynamic> toJson() => {
@@ -36,5 +38,6 @@ class Todo {
         'description': description,
         'id': id,
         'isDone': isDone,
+
       };
 }
