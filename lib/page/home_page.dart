@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
 import '../api/firebase_api.dart';
 import '../main.dart';
 import '../model/todo.dart';
@@ -20,12 +19,14 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar( backgroundColor: Colors.black,
-        title: Text(MyApp.title,style: TextStyle(color: Colors.white),),
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Text(
+          MyApp.title,
+          style: TextStyle(color: Colors.white),
+        ),
       ),
-
       body: StreamBuilder<List<Todo>>(
         stream: FirebaseApi.readTodos(),
         builder: (context, snapshot) {
@@ -36,7 +37,6 @@ class _HomePageState extends State<HomePage> {
               if (snapshot.hasError) {
                 print(snapshot.error);
                 return buildText('Something Went Wrong Try later');
-
               } else {
                 final todos = snapshot.data;
 

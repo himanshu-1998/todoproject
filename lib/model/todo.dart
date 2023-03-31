@@ -1,6 +1,4 @@
-
 import '../utils.dart';
-
 
 class TodoField {
   static String createdTime = 'createdTime';
@@ -13,23 +11,20 @@ class Todo {
   String description;
   bool isDone;
 
-
   Todo({
     required this.createdTime,
     required this.title,
-
     this.description = '',
     this.id,
     this.isDone = false,
   });
 
   static Todo fromJson(Map<String, dynamic> json) => Todo(
-        createdTime: Utils.toDateTime(json['createdTime']) as DateTime ,
+        createdTime: Utils.toDateTime(json['createdTime']) as DateTime,
         title: json['title'],
         description: json['description'],
         id: json['id'],
         isDone: json['isDone'],
-
       );
 
   Map<String, dynamic> toJson() => {
@@ -38,6 +33,5 @@ class Todo {
         'description': description,
         'id': id,
         'isDone': isDone,
-
       };
 }

@@ -89,7 +89,6 @@ class _TodoWidgetState extends State<TodoWidget> {
                 builder: (context) => DetailsScreen(
                       title: widget.todo.title,
                       description: widget.todo.description,
-
                     )),
           );
         },

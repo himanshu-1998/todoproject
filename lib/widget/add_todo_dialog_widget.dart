@@ -1,5 +1,3 @@
-
-
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -19,7 +17,6 @@ class _AddTodoDialogWidgetState extends State<AddTodoDialogWidget> {
   final _formKey = GlobalKey<FormState>();
   String title = '';
   String description = '';
-
 
   bool isLoading = false;
 
@@ -63,7 +60,6 @@ class _AddTodoDialogWidgetState extends State<AddTodoDialogWidget> {
         title: title,
         description: description,
         createdTime: DateTime.now(),
-
       );
       provider.addTodo(todo);
 

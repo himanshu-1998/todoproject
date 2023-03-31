@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import '../api/firebase_api.dart';
 import '../model/todo.dart';
 
-
 class TodosProvider extends ChangeNotifier {
   List<Todo> _todos = [];
 
@@ -22,8 +21,7 @@ class TodosProvider extends ChangeNotifier {
 
   void removeTodo(Todo todo) => FirebaseApi.deleteTodo(todo);
 
-
-  String? imageUrl ;
+  String? imageUrl;
 
   bool toggleTodoStatus(Todo todo) {
     todo.isDone = !todo.isDone;
@@ -31,7 +29,6 @@ class TodosProvider extends ChangeNotifier {
 
     return todo.isDone;
   }
-
 
   void updateTodo(Todo todo, String title, String description) {
     todo.title = title;

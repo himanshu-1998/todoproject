@@ -29,15 +29,13 @@ class TodoFormWidget extends StatefulWidget {
 }
 
 class _TodoFormWidgetState extends State<TodoFormWidget> {
-
   CollectionReference _reference =
-  FirebaseFirestore.instance.collection('shopping_list');
+      FirebaseFirestore.instance.collection('shopping_list');
 
   String imageUrl = '';
 
   @override
-  Widget build(BuildContext context) =>
-      SingleChildScrollView(
+  Widget build(BuildContext context) => SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -52,8 +50,7 @@ class _TodoFormWidgetState extends State<TodoFormWidget> {
         ),
       );
 
-  Widget buildTitle() =>
-      TextFormField(
+  Widget buildTitle() => TextFormField(
         maxLines: 1,
         initialValue: widget.title,
         onChanged: widget.onChangedTitle,
@@ -69,8 +66,7 @@ class _TodoFormWidgetState extends State<TodoFormWidget> {
         ),
       );
 
-  Widget buildDescription() =>
-      TextFormField(
+  Widget buildDescription() => TextFormField(
         maxLines: 3,
         initialValue: widget.description,
         onChanged: widget.onChangedDescription,
@@ -80,8 +76,7 @@ class _TodoFormWidgetState extends State<TodoFormWidget> {
         ),
       );
 
-  Widget buildButton() =>
-      SizedBox(
+  Widget buildButton() => SizedBox(
         width: double.infinity,
         child: ElevatedButton(
           style: ButtonStyle(
@@ -92,8 +87,7 @@ class _TodoFormWidgetState extends State<TodoFormWidget> {
         ),
       );
 
-  Widget buildImagePicker() =>
-      SizedBox(
+  Widget buildImagePicker() => SizedBox(
         width: double.infinity,
         child: ElevatedButton(
           style: ButtonStyle(
@@ -116,13 +110,13 @@ class _TodoFormWidgetState extends State<TodoFormWidget> {
 
             ImagePicker imagePicker = ImagePicker();
             XFile? file =
-            await imagePicker.pickImage(source: ImageSource.camera);
+                await imagePicker.pickImage(source: ImageSource.camera);
             print('${file?.path}');
 
             if (file == null) return;
             //Import dart:core
             String uniqueFileName =
-            DateTime.now().millisecondsSinceEpoch.toString();
+                DateTime.now().millisecondsSinceEpoch.toString();
 
             /*Step 2: Upload to Firebase storage*/
             //Install firebase_storage
@@ -130,12 +124,11 @@ class _TodoFormWidgetState extends State<TodoFormWidget> {
 
             //Get a reference to storage root
             Reference referenceRoot = FirebaseStorage.instance.ref();
-            Reference referenceDirImages =
-            referenceRoot.child('images');
+            Reference referenceDirImages = referenceRoot.child('images');
 
             //Create a reference for the image to be stored
             Reference referenceImageToUpload =
-            referenceDirImages.child(uniqueFileName);
+                referenceDirImages.child(uniqueFileName);
 
             //Handle errors/success
             try {
@@ -148,7 +141,8 @@ class _TodoFormWidgetState extends State<TodoFormWidget> {
             }
 
             setState(() {
-              final provider = Provider.of<TodosProvider>(context, listen: false);
+              final provider =
+                  Provider.of<TodosProvider>(context, listen: false);
               provider.imageUrl = imageUrl;
             });
           },

@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:todoproject/page/home_page.dart';
 import 'package:todoproject/provider/todos.dart';
 
-
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -17,15 +16,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
-    create: (context) => TodosProvider(),
-    child: MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: title,
-      theme: ThemeData(
-        primarySwatch: Colors.pink,
-        scaffoldBackgroundColor: Color(0xFFf6f5ee),
-      ),
-      home: HomePage(),
-    ),
-  );
+        create: (context) => TodosProvider(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: title,
+          theme: ThemeData(
+            primarySwatch: Colors.pink,
+            scaffoldBackgroundColor: Color(0xFFf6f5ee),
+          ),
+          home: HomePage(),
+        ),
+      );
 }
